@@ -15,9 +15,9 @@ class Delivery
     }
 
     public function toRemoteApp($serverUrl, $data)
-    {
+    {    
 
-    
+        //ارسال به سرور اپ مورد نطر
         $res = $this->client->get($serverUrl, [
             'json' => $data,
          ]);
@@ -30,8 +30,8 @@ class Delivery
     {
 
         $remoteApp = new RemoteApp();
-
         
+        // ارسال به سیموتل مقصد توسط apikey که در مرحله ثبلی از hgeader دریات شده بود
         $res =  $this->client->post($server_simotel, [
             'headers' => [
                 'X-APIKEY' => $authkey['x-apikey'][0],
@@ -42,8 +42,11 @@ class Delivery
         
         $data= json_decode($res->getBody()->getContents());
         
+        //تشخیض og_id تماس
         $og_id =  $data->data->originated_call_id;
       
+
+        //ذخیره og به وسیله اapp-name
         $remoteApp->storeOg($og_id, $appname);
 
         return $data;

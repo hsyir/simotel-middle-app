@@ -15,10 +15,11 @@ class RemoteApp {
     
 
     public function initWithName($name){
-        $app =  config('app.remote_apps.'.$name);
-
+        $app = config('app.remote_apps.'.$name);
+        
         $this->name = $name;
-        $this->url=$app['url'];
+        // $this->url=$app['url'];
+        $this->url=$name;
         $this->simotel_url = $app['simotel_url'];
         
     }

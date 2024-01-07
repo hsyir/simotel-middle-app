@@ -4,12 +4,14 @@ return [
     
     'remote_apps'=>[
 
-        '02191305906'=> [
+        //آدرس سایت قسمت اولش رو میزاریم برای تشخیض اپ مورد نظر
+        //همچنین در قسمت connector اضافه میشه و به عنوان پارامتر app-name ارسال میشه 
+        'akramnaddaf'=> [
             'url'=>'https://akramnaddaf.ir/api/sea',
             'simotel_url'=>'http://109.125.138.210/',
         ],
     
-        '02191405906'=> [
+        'telemoshaverdemobin'=> [
             'url'=>'https://telemoshaver.demobin.ir/api/sea',
             'simotel_url'=>'http://109.125.138.210/',
         ],

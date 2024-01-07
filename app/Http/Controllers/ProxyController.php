@@ -17,10 +17,12 @@ class ProxyController extends Controller
         $remoteApp = new RemoteApp();
         try {
 
+            //تشخیض سرور مورد نظر برای ارسال داده ها و cdr از طریق og
             $remoteApp->initWithOg($request->get('originated_call_id'));
 
             $delivery = new Delivery();
             
+            //ارسال داده ها به سمت سرور تشخیض داده شده
             $res =  $delivery->toRemoteApp($remoteApp->getUrl(), $request->all());
             
             return response()->json([
@@ -48,15 +50,19 @@ class ProxyController extends Controller
         try {
             $header = $request->header();
             
+            //تشخیض از طریق app-name ارسالی از سمت سرور درخواست دهنده تماس
             $app->initWithName($header['app'][0]);
 
             $simotel_url = $app->getSimotelUrl();
 
+
+            
             $split_url = explode('proxy/fromremoteapp/', $request->url());
             $server_simotel = $simotel_url.$split_url[1];
 
             $delivery = new Delivery();
 
+            //تحویل به سیموتل مقصد 
             $response = $delivery->toSimotel($server_simotel, $header, $request->all(), $app->getName());
             
             return response()->json([
