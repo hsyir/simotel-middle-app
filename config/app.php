@@ -11,7 +11,7 @@ return [
             'simotel_url'=>'http://109.125.138.210/',
         ],
     
-        'telemoshaverdemobin'=> [
+        'teledemobin'=> [
             'url'=>'https://telemoshaver.demobin.ir/api/sea',
             'simotel_url'=>'http://109.125.138.210/',
         ],
