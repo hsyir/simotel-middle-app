@@ -40,14 +40,14 @@ class Delivery
             'json' => $data,
          ]);
         
-       // $data= json_decode($res->getBody()->getContents());
+       $data= json_decode($res->getBody()->getContents());
         
         //تشخیض og_id تماس
-        //$og_id =  $data->data->originated_call_id;
+        $og_id =  $data->data->originated_call_id;
          
 
         //ذخیره og به وسیله اapp-name
-       // $remoteApp->storeOg($og_id, $appname);
+       $remoteApp->storeOg($og_id, $appname);
          
         // return response()->json([
         //     $data
