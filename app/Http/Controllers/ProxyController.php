@@ -22,7 +22,7 @@ class ProxyController extends Controller
             
             //تشخیض سرور مورد نظر برای ارسال داده ها و cdr از طریق og
             $remoteApp->initWithOg($request->get('originated_call_id'));
-
+            
             
             $delivery = new Delivery();
             
@@ -60,7 +60,7 @@ class ProxyController extends Controller
             
             //تشخیض از طریق app-name ارسالی از سمت سرور درخواست دهنده تماس
             $app->initWithName($header['app'][0]);
-            Log::info($header['app'][0]);
+            
             $simotel_url = $app->getSimotelUrl();
 
             $split_url = explode('proxy/fromremoteapp/', $request->url());

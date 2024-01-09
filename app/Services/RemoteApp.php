@@ -3,9 +3,11 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Cache;
-use Log;
+
+
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Support\Facades\Log;
 
 class RemoteApp {
 
@@ -47,7 +49,7 @@ class RemoteApp {
 
    public function  initWithOg($og){
         $name = Cache::get($og,''); 
-        
+        Log::info($name);
         $this->initWithName($name);
    }
 

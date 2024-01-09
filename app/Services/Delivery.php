@@ -4,6 +4,7 @@ namespace App\Services;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Support\Facades\Log;
 
 class Delivery
 {
@@ -21,7 +22,7 @@ class Delivery
         $res = $this->client->get($serverUrl, [
             'json' => $data,
          ]);
-
+        Log::info($res->getBody()->getContents());
         return $res;
 
     }
