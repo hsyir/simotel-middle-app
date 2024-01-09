@@ -17,6 +17,7 @@ class Delivery
     public function toRemoteApp($serverUrl, $data)
     {    
 
+        
         //ارسال به سرور اپ مورد نطر
         $res = $this->client->get($serverUrl, [
             'json' => $data,

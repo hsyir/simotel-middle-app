@@ -19,7 +19,7 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix'=>'proxy'],function () use ($router){
-    $router->get('fromsimotel','ProxyController@fromSimotel');
+    $router->get('fromsimotel/Cdr','ProxyController@fromSimotel');
 });
 
 $router->group(['prefix'=>'proxy/fromremoteapp'],function () use ($router){
