@@ -51,6 +51,7 @@ class ProxyController extends Controller
     public function fromRemoteApp(Request $request)
     {
 
+        
         $app = new RemoteApp();
         
         
@@ -59,7 +60,7 @@ class ProxyController extends Controller
             
             //تشخیض از طریق app-name ارسالی از سمت سرور درخواست دهنده تماس
             $app->initWithName($header['app'][0]);
-
+            Log::info($header['app'][0]);
             $simotel_url = $app->getSimotelUrl();
 
             $split_url = explode('proxy/fromremoteapp/', $request->url());
@@ -75,7 +76,7 @@ class ProxyController extends Controller
         } catch(ClientException $ex) {
             $response = $ex->getResponse();
             $responseBodyAsString = $response->getBody()->getContents();
-
+            Log::info($response);
             dd( response()->json([
                 "success" => false,
                 "error_message" => $ex->getMessage(),
