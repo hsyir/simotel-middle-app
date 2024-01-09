@@ -42,6 +42,7 @@ class RemoteApp {
     public function storeOg($og,$appname){
         // dd($og,$appname);
         Cache::put($og,$appname,500);
+       
     }
 
    public function  initWithOg($og){

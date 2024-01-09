@@ -62,19 +62,15 @@ class ProxyController extends Controller
 
             $simotel_url = $app->getSimotelUrl();
 
-
-            
             $split_url = explode('proxy/fromremoteapp/', $request->url());
             $server_simotel = $simotel_url.$split_url[1];
 
             $delivery = new Delivery();
-
+            
             //تحویل به سیموتل مقصد 
             $response = $delivery->toSimotel($server_simotel, $header, $request->all(), $app->getName());
             
-            return response()->json([
-              $response
-            ]) ;
+            return $response;
 
         } catch(ClientException $ex) {
             $response = $ex->getResponse();
