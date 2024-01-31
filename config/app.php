@@ -12,10 +12,13 @@ return [
         ],
     
         'teledemobin'=> [
-            'url'=>'https://telemoshaver.demobin.ir/api/sea/Cdr/',
+            'url'=>'https://telemoshaver.demobin.ir/api/sea/Cdr',
             'simotel_url'=>'http://109.125.138.210/',
         ],
-    
+        'karama'=> [
+            'url'=>'https://app.karama.ir/api/sea/Cdr',
+            'simotel_url'=>'http://109.125.138.210/',
+        ],
     ],
     
 ];
