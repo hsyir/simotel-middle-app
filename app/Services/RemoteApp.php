@@ -9,6 +9,8 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Log;
 
+use function PHPUnit\Framework\throwException;
+
 class RemoteApp {
 
     private $name;
@@ -19,6 +21,9 @@ class RemoteApp {
     public function initWithName($name){
         
         $app = config('app.remote_apps.'.$name);
+        if(!$app){
+            throw new \Exception("Originated Call Not Found in proxy-cache");
+        }
         
         $this->name = $name;
         $this->url=$app['url'];
@@ -43,13 +48,15 @@ class RemoteApp {
 
     public function storeOg($og,$appname){
         // dd($og,$appname);
-        Cache::put($og,$appname,500);
+        Cache::put($og,$appname,5000);
        
     }
 
    public function  initWithOg($og){
         $name = Cache::get($og,''); 
-        Log::info($name);
+        if(!$name)
+            throw new \Exception("og name not found ");
+        
         $this->initWithName($name);
    }
 

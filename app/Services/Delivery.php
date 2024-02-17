@@ -18,11 +18,13 @@ class Delivery
     public function toRemoteApp($serverUrl, $data)
     {    
 
+
+
         //ارسال به سرور اپ مورد نطر
         $res = $this->client->get($serverUrl, [
             'json' => $data,
          ]);
-        Log::info($res->getBody()->getContents());
+        Log::info("remote: " . $res->getBody()->getContents());
         return $res;
 
     }
