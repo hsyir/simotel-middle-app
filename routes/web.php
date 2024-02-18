@@ -1,6 +1,9 @@
 <?php
 
+
 use App\Http\Controllers\PoxyController;
+
+use Illuminate\Support\Facades\Cache;
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 /*
@@ -14,12 +17,20 @@ use App\Http\Controllers\PoxyController;
 |
 */
 
+
+
+$router->get("/",function(){
+
+dd(request()->all());
+});
+
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
 $router->group(['prefix'=>'proxy'],function () use ($router){
-    $router->get('fromsimotel/Cdr','ProxyController@fromSimotel');
+    $router->post('fromsimotel/Cdr','ProxyController@fromSimotel');
 });
 
 $router->group(['prefix'=>'proxy/fromremoteapp'],function () use ($router){

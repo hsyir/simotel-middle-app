@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Services;
 
 use GuzzleHttp\Client;
@@ -16,16 +15,21 @@ class Delivery
     }
 
     public function toRemoteApp($serverUrl, $data)
-    {    
+        {
+          //ارسال به سرور اپ مورد نطر
+        //dd($data);
 
 
-
-        //ارسال به سرور اپ مورد نطر
-        $res = $this->client->get($serverUrl, [
-            'json' => $data,
+         $res =  $this->client->post('https://akramnaddaf.ir/api/sea/Cdr', [
+                'headers'=>[
+                'Accept' => 'application/json',
+                ],
+            'json' =>json_encode( $data),
          ]);
-        Log::info("remote: " . $res->getBody()->getContents());
-        return $res;
+
+//dd($res->getBody()->getContents());
+        //Log::info("remote: " . $res->getBody()->getContents());
+        return $res->getBody()->getContents();
 
     }
 
@@ -33,7 +37,7 @@ class Delivery
     {
 
         $remoteApp = new RemoteApp();
-        
+
         // ارسال به سیموتل مقصد توسط apikey که در مرحله ثبلی از hgeader دریات شده بود
         $res =  $this->client->post($server_simotel, [
             'headers' => [
@@ -42,16 +46,16 @@ class Delivery
             ],
             'json' => $data,
          ]);
-        
+
        $data= json_decode($res->getBody()->getContents());
-        
+
         //تشخیض og_id تماس
         $og_id =  $data->data->originated_call_id;
-         
+
 
         //ذخیره og به وسیله اapp-name
        $remoteApp->storeOg($og_id, $appname);
-         
+
         // return response()->json([
         //     $data
         // ]) ;
