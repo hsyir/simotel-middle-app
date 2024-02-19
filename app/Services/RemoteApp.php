@@ -40,14 +40,13 @@ class RemoteApp {
     }
 
     public function storeOg($og,$appname){
-        // dd($og,$appname);
-//Log::info("store",(array)$og);
-        Cache::put($og,$appname,5000);
+
+        Cache::put($og,$appname,7200);
 
     }
 
    public function  initWithOg($og){
-$name = Cache::get($og,'');
+        $name = Cache::get($og,'');
 
         if(!$name)
             throw new \Exception("og name not found ");

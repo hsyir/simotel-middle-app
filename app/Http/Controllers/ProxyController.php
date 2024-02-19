@@ -13,12 +13,11 @@ class ProxyController extends Controller
 {
     public function fromSimotel(Request $request)
     {
-//dd($request->event_name);
+
 
         $remoteApp = new RemoteApp();
         try {
-//              die("salam".$request->get('originated_call_id'));
-            //تشخیض سرور مورد نظر برای ارسال داده ها و cdr از طریق og
+
             $remoteApp->initWithOg($request->originated_call_id);
 
             Log::info($remoteApp->getUrl());

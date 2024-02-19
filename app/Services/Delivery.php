@@ -17,18 +17,14 @@ class Delivery
     public function toRemoteApp($serverUrl, $data)
         {
           //ارسال به سرور اپ مورد نطر
-        //dd($data);
 
-
-         $res =  $this->client->post('https://akramnaddaf.ir/api/sea/Cdr', [
+         $res =  $this->client->post($serverUrl, [
                 'headers'=>[
                 'Accept' => 'application/json',
                 ],
             'json' =>json_encode( $data),
          ]);
 
-//dd($res->getBody()->getContents());
-        //Log::info("remote: " . $res->getBody()->getContents());
         return $res->getBody()->getContents();
 
     }
@@ -56,9 +52,6 @@ class Delivery
         //ذخیره og به وسیله اapp-name
        $remoteApp->storeOg($og_id, $appname);
 
-        // return response()->json([
-        //     $data
-        // ]) ;
         return $res;
 
     }
