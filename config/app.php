@@ -23,6 +23,11 @@ return [
             'url'=>'https://app.sookhtenegari.ir/api/sea/Cdr',
             'simotel_url'=>'http://109.125.138.210/',
         ],
+
+        'cyber118'=> [
+            'url'=>'https://cyber118.com/api/sea/Cdr',
+            'simotel_url'=>'http://109.125.138.210/',
+        ],
     ],
     
 ];
