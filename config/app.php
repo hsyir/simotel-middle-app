@@ -28,6 +28,11 @@ return [
             'url'=>'https://cyber118.com/api/sea/Cdr',
             'simotel_url'=>'http://109.125.138.210/',
         ],
+        
+        'demotel'=> [
+            'url'=>'https://demo.telemoshavere.ir/api/sea/Cdr',
+            'simotel_url'=>'http://109.125.138.210/',
+        ],
     ],
     
 ];
