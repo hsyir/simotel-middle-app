@@ -7,7 +7,7 @@ use App\Services\RemoteApp;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use GuzzleHttp\Exception\ClientException;
-use Illuminate\Support\Facades\Log;
+use Log;
 
 class ProxyController extends Controller
 {
@@ -55,30 +55,28 @@ class ProxyController extends Controller
     {
 
 
-        $app = new RemoteApp();
-
-
         try {
             $header = $request->header();
-
             //تشخیض از طریق app-name ارسالی از سمت سرور درخواست دهنده تماس
-            $app->initWithName($header['app'][0]);
+            //$app->initWithName($header['app'][0]);
 
-            $simotel_url = $app->getSimotelUrl();
+
+            // dd($header);
+            $app_url = $header['x-tele-url'][0];
+            $simotel_url = $header['x-simotel-url'][0];
             $split_url = explode('proxy/fromremoteapp/', $request->url());
             $server_simotel = $simotel_url . $split_url[1];
 
             $delivery = new Delivery();
-
             //تحویل به سیموتل مقصد
-            $response = $delivery->toSimotel($server_simotel, $header, $request->all(), $app->getName());
+            $response = $delivery->toSimotel($server_simotel, $header, $request->all(), $app_url );
 
             return $response;
 
         } catch(ClientException $ex) {
             $response = $ex->getResponse();
             $responseBodyAsString = $response->getBody()->getContents();
-            Log::info($response);
+            Log::info("errrrrrrrrrrr:".$response);
             dd(response()->json([
                 "success" => false,
                 "error_message" => $ex->getMessage(),

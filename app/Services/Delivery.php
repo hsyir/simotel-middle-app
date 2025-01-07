@@ -22,14 +22,14 @@ class Delivery
                 'headers'=>[
                 'Accept' => 'application/json',
                 ],
-            'json' =>json_encode( $data),
+            'json' =>$data,
          ]);
 
         return $res->getBody()->getContents();
 
     }
 
-    public function toSimotel($server_simotel, $authkey, $data, $appname)
+    public function toSimotel($server_simotel, $authkey, $data, $simotel_url)
     {
 
         $remoteApp = new RemoteApp();
@@ -43,14 +43,15 @@ class Delivery
             'json' => $data,
          ]);
 
-       $data= json_decode($res->getBody()->getContents());
 
+       $data= json_decode($res->getBody()->getContents());
+        //  dd($data);
         //تشخیض og_id تماس
         $og_id =  $data->data->originated_call_id;
 
 
         //ذخیره og به وسیله اapp-name
-       $remoteApp->storeOg($og_id, $appname);
+       $remoteApp->storeOg($og_id, $simotel_url);
 
         return $res;
 

@@ -22,9 +22,6 @@ class RemoteApp {
         $this->url=$app['url'];
         // $this->url=$name;
         $this->simotel_url = $app['simotel_url'];
-
-
-
     }
 
     public function getName(){
@@ -39,9 +36,9 @@ class RemoteApp {
         return $this->simotel_url;
     }
 
-    public function storeOg($og,$appname){
+    public function storeOg($og,$simotelUrl){
 
-        Cache::put($og,$appname,7200);
+        Cache::put($og,$simotelUrl,7200);
 
     }
 
