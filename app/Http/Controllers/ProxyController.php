@@ -18,15 +18,15 @@ class ProxyController extends Controller
         $remoteApp = new RemoteApp();
         try {
 
-            $remoteApp->initWithOg($request->originated_call_id);
+           $url =  $remoteApp->initWithOgUrl($request->originated_call_id);
 
-            Log::info($remoteApp->getUrl());
+            //Log::info($remoteApp->getUrl());
 
             $delivery = new Delivery();
 
 
             //ارسال داده ها به سمت سرور تشخیض داده شده
-            $res =   $delivery->toRemoteApp($remoteApp->getUrl(), $request->all());
+            $res =   $delivery->toRemoteApp($url, $request->all());
 
             return response()->json([
                 "res"=>$res

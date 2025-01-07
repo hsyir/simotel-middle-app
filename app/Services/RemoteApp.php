@@ -50,6 +50,14 @@ class RemoteApp {
 
         $this->initWithName($name);
    }
+   public function initWithOgUrl($og){
+    $name = Cache::get($og,'');
+
+        if(!$name)
+            throw new \Exception("og name not found ");
+
+            return $name;
+   }
 
 
 }
