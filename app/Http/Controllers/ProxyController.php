@@ -64,6 +64,7 @@ class ProxyController extends Controller
             // dd($header);
             $app_url = $header['x-tele-url'][0];
             $simotel_url = $header['x-simotel-url'][0];
+            $simotel_url = str_replace('api/v4/', '', $simotel_url);
             $split_url = explode('proxy/fromremoteapp/', $request->url());
             $server_simotel = $simotel_url . $split_url[1];
 
