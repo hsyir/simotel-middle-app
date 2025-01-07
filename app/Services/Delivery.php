@@ -18,7 +18,7 @@ class Delivery
         {
           //ارسال به سرور اپ مورد نطر
 
-         $res =  $this->client->post($serverUrl, [
+         $res =  $this->client->post($serverUrl."/api/sea/Cdr", [
                 'headers'=>[
                 'Accept' => 'application/json',
                 ],

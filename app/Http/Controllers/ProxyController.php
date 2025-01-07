@@ -26,7 +26,7 @@ class ProxyController extends Controller
 
 
             //ارسال داده ها به سمت سرور تشخیض داده شده
-            $res =   $delivery->toRemoteApp($url, $request->all());
+            $res = $delivery->toRemoteApp($url, $request->all());
 
             return response()->json([
                 "res"=>$res
